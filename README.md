@@ -1,108 +1,57 @@
-🛠️ Hardhat Token
+# MyNFT
 
-A repository for deploying and testing ERC-20 tokens and a simple liquidity pool (ETH + ERC-20) on the Sepolia Testnet. Built for educational purposes.
+MyNFT is a simple Ethereum-based NFT (Non-Fungible Token) smart contract implemented in Solidity. This project allows users to mint unique tokens and manage their ownership on the Ethereum blockchain.
 
-📂 Folder Structure
-hardhat-token/
-├─ artifacts/           # Compiled contract artifacts (auto-generated)
-├─ cache/               # Hardhat cache
-├─ contracts/           # Solidity contracts
-│  ├─ MyToken.sol       # ERC-20 token contract
-│  └─ Pair.sol          # Liquidity pool contract (ETH + ERC-20)
-├─ scripts/             # Deployment scripts
-│  ├─ deployToken.js    # Deploy ERC-20 token
-│  └─ deployPair.js     # Deploy liquidity pool (Pair)
-├─ node_modules/        # Project dependencies
-├─ .env                 # Environment variables (private)
-├─ hardhat.config.js    # Hardhat configuration
-├─ package.json         # Node project config
-├─ package-lock.json    # Dependency lock
-├─ tokenData.json       # Optional token metadata storage
-└─ README.md            # Project readme
+## Features
 
-✨ Features
+- Mint unique NFTs
+- Track NFT ownership
+- Basic metadata support (can be extended)
 
-Deploy custom ERC-20 tokens with custom name, symbol, total supply, and decimals.
+## Prerequisites
 
-Create a simple liquidity pool contract for ETH and ERC-20 tokens.
+- [Node.js](https://nodejs.org/) (v16 or higher recommended)
+- [Hardhat](https://hardhat.org/) for compiling, testing, and deploying smart contracts
+- [Metamask](https://metamask.io/) or other Ethereum wallet for interacting with the contract
 
-Mint LP tokens based on liquidity added.
+## Installation
 
-View reserves of ETH and ERC-20 tokens in the pool.
-
-🛠️ Contracts
-MyToken.sol
-
-ERC-20 token with configurable decimals and initial supply.
-
-Constructor Parameters: name, symbol, initialSupply, decimals_.
-
-Pair.sol
-
-Simple liquidity pool contract for ETH + ERC-20 token.
-
-addLiquidity(uint256 amount1) payable – Add ETH and token liquidity.
-
-getReserves() – View ETH and token reserves.
-
-sqrt(uint256 y) – Internal utility to calculate LP tokens.
-
-Note: token0 is always ETH (address(0)), token1 is the ERC-20 token passed in the constructor.
-
-🚀 Installation & Setup
-
-Clone repository:
-
-git clone https://github.com/smjb65/hardhat-token.git
-cd hardhat-token
-
-
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/your-username/MyNFT.git
+   cd MyNFT
 Install dependencies:
 
+bash
+Copy
+Edit
 npm install
+Compile the smart contract:
 
-
-Compile contracts:
-
+bash
+Copy
+Edit
 npx hardhat compile
+Deployment
+You can deploy the contract to a local Hardhat network or any Ethereum testnet/mainnet.
 
+Example for local deployment:
 
-Configure environment:
-Fill .env with your Sepolia RPC URL and private key.
+bash
+Copy
+Edit
+npx hardhat run scripts/deploy.js --network localhost
+Usage
+Interact with the contract using Hardhat scripts or a frontend connected via Web3.js or Ethers.js.
 
-🏗️ Deployment Scripts
+Mint a new NFT by calling the mint function with the desired token metadata.
 
-Deploy ERC-20 Token:
+Contributing
+Contributions are welcome! Feel free to open issues or submit pull requests.
 
-npx hardhat run scripts/deployToken.js --network sepolia
+License
+This project is licensed under the MIT License.
 
-
-Deploy Pair (Liquidity Pool):
-
-npx hardhat run scripts/deployPair.js --network sepolia
-
-
-These scripts deploy your contracts and log addresses for further interaction.
-
-⚡ Interacting with Contracts
-
-Use Hardhat console or Ethers.js:
-
-npx hardhat console --network sepolia
-
-
-Example:
-
-const [deployer] = await ethers.getSigners();
-const token = await ethers.getContractAt("MyToken", "<TOKEN_ADDRESS>");
-await token.transfer("<RECIPIENT>", ethers.utils.parseUnits("100", 18));
-
-
-To add liquidity:
-
-const pair = await ethers.getContractAt("Pair", "<PAIR_ADDRESS>");
-await pair.addLiquidity(ethers.utils.parseUnits("50", 18), { value: ethers.utils.parseEther("1") });
-
-📜 License
-
-This project is for educational and testing purposes on Sepolia Testnet only. Not intended for production or real trading use.
+markdown
+Copy
+Edit
